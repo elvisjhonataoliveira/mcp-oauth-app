@@ -1,0 +1,28 @@
+{
+  "name": "oauth-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start-default": "node default-oauth21/index.js",
+    "dev-default": "node default-oauth21/index.js",
+    "start-mcp": "nodemon mcp-oauth21/index.js",
+    "dev-mcp": "nodemon mcp-oauth21/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "uuid": "^9.0.1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "OAuth2.1 implementation with NodeJS and Express",
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}

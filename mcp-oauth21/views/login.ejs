@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OAuth2.1 Authorization Server - Login</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 400px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .header h1 {
+            color: #333;
+            margin: 0 0 0.5rem 0;
+            font-size: 1.8rem;
+        }
+        .header p {
+            color: #666;
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        .client-info {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #007bff;
+        }
+        .client-info h3 {
+            margin: 0 0 0.5rem 0;
+            color: #333;
+            font-size: 1rem;
+        }
+        .client-info p {
+            margin: 0;
+            color: #666;
+            font-size: 0.85rem;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 500;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 0.75rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            border: 1px solid #f5c6cb;
+        }
+        .btn {
+            width: 100%;
+            padding: 0.75rem;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .btn:hover {
+            background: #0056b3;
+        }
+        .demo-users {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: #e7f3ff;
+            border-radius: 5px;
+            border: 1px solid #b3d7ff;
+        }
+        .demo-users h4 {
+            margin: 0 0 0.5rem 0;
+            color: #0056b3;
+            font-size: 0.9rem;
+        }
+        .demo-users p {
+            margin: 0.25rem 0;
+            font-size: 0.8rem;
+            color: #0056b3;
+        }
+        .demo-users strong {
+            color: #003d82;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Sign In</h1>
+            <p>OAuth2.1 Authorization Server</p>
+        </div>
+
+        <div class="client-info">
+            <h3>Application Request</h3>
+            <p><strong><%= client.client_name %></strong> is requesting access to your account</p>
+        </div>
+
+        <% if (typeof error !== 'undefined' && error) { %>
+            <div class="error">
+                <%= error %>
+            </div>
+        <% } %>
+
+        <form method="POST" action="/auth/login">
+            <input type="hidden" name="authRequest" value="<%= authRequest %>">
+            
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required autocomplete="username">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required autocomplete="current-password">
+            </div>
+
+            <button type="submit" class="btn">Sign In & Authorize</button>
+        </form>
+
+        <div class="demo-users">
+            <h4>Demo Users (for testing):</h4>
+            <p><strong>alice</strong> / password123 (User)</p>
+            <p><strong>bob</strong> / password456 (Admin)</p>
+            <p><strong>charlie</strong> / password789 (User)</p>
+        </div>
+    </div>
+</body>
+</html> 
